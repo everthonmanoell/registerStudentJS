@@ -144,10 +144,9 @@ class Aplicacao {
             this.alunos.forEach(aluno => {
                 
                 console.log(`Nome: ${aluno.nome}`);
-                console.log(`Login: ${aluno.login}`);
-                console.log(`Idade: ${aluno.idade}`);
-                console.log(`Sexo: ${aluno.sexo}`);
-                console.log(`Média: ${aluno.media}\n`);
+                console.log(`Matricula: ${aluno.matricula}`);
+                console.log("=====================================");
+                
             });
             
         }
@@ -165,14 +164,16 @@ class Aplicacao {
         }
 
         if (quantidadeEncontrados.length > 0) {
-            console.log(`Total de alunos encontrados: ${quantidadeEncontrados.length}.`);
+            console.log(`Total de alunos encontrados: [ ${quantidadeEncontrados.length} ].`);
+            console.log("=============");
 
             quantidadeEncontrados.forEach(aluno => {
                 console.log(`Nome: ${aluno.nome}`);
                 console.log(`Login: ${aluno.login}`);
                 console.log(`Idade: ${aluno.idade}`);
                 console.log(`Sexo: ${aluno.sexo}`);
-                console.log(`Média: ${aluno.media}\n`);
+                console.log(`Média: ${aluno.media}`);
+                console.log("==================================\n");
             });
             return;
         }else{
