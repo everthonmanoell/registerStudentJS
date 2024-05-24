@@ -4,29 +4,32 @@ class Aplicacao {
     alunos = [];
 
     executar() {
-        
-        
+
+
         console.log("Bem vindo ao sistema de gerenciamento de alunos\n");
 
-        while(true){
+        while (true) {
             console.log("Sistema de gerenciamento de alunos");
             this.#login = prompt('Digite o login: ');
             this.#senha = prompt('Digite a senha: ');
 
-            let objAluno = this.verificarLoginSistema(this.#login, this.#senha);
+            
 
             if (this.#login === 'adm' && this.#senha === '123') {
                 console.log("Usuário correto! Entrou no sistema!\n");
                 this.menu();
 
-            } else if (objAluno != null) {
-                console.log("Usuário correto! Entrou no sistema!\n");
-                this.menuAluno(objAluno);
             } else {
-                console.log("Usuário ou senha incorretos. Tente novamente!");
+                let objAluno = this.verificarLoginSistema(this.#login, this.#senha);
+                if (objAluno != null) {
+                    console.log("Usuário correto! Entrou no sistema!\n");
+                    this.menuAluno(objAluno);
+                } else {
+                    console.log("Usuário ou senha incorretos. Tente novamente!");
+                }
             }
         }
-        
+
 
 
     }
@@ -142,13 +145,13 @@ class Aplicacao {
             console.log(`Total de alunos cadastrados: ${this.alunos.length}.`);
 
             this.alunos.forEach(aluno => {
-                
+
                 console.log(`Nome: ${aluno.nome}`);
                 console.log(`Matricula: ${aluno.matricula}`);
                 console.log("=====================================");
-                
+
             });
-            
+
         }
     }
 
@@ -159,7 +162,7 @@ class Aplicacao {
         for (const aluno of this.alunos) {
             if (aluno.nome === entrada || aluno.matricula === parseInt(entrada)) {
                 quantidadeEncontrados.push(aluno);
-                
+
             }
         }
 
@@ -175,12 +178,12 @@ class Aplicacao {
                 console.log(`Média: ${aluno.media}`);
                 console.log("==================================\n");
             });
-            return;
-        }else{
+
+        } else {
             console.log("Aluno não encontrado");
-            return null;
+
         }
-        
+
     }
 
     atualizarAluno(matricula) {
@@ -378,3 +381,5 @@ const app = new Aplicacao();
 
 
 app.executar();
+
+
