@@ -4,22 +4,26 @@ class Aplicacao {
     alunos = [];
 
     executar() {
+       
         console.log("Bem vindo ao sistema de gerenciamento de alunos");
         this.#login = prompt('Digite o login: ');
         this.#senha = prompt('Digite a senha: ');
-        
+
         let objAluno = this.verificarLoginSistema(this.#login, this.#senha);
-        
+
         if (this.#login === 'adm' && this.#senha === '123') {
             console.log("Usuário correto! Entrou no sistema!\n");
             this.menu();
-           
-        } else if(objAluno != null){
+
+        } else if (objAluno != null) {
             console.log("Usuário correto! Entrou no sistema!\n");
             this.menuAluno(objAluno);
-        }else{
+        } else {
             console.log("Usuário ou senha incorretos. Tente novamente!");
         }
+        
+
+
     }
 
     //--------------------------------------------------------------------------------
@@ -73,7 +77,7 @@ class Aplicacao {
 
     menuAluno(aluno) {
         let op;
-        console.log(`Bem-vindo ao sistema, ${aluno.nome}!` );
+        console.log(`Bem-vindo ao sistema, ${aluno.nome}!`);
         do {
 
             console.log(" \n");
@@ -117,7 +121,7 @@ class Aplicacao {
         let idade = prompt("Digite a idade: ");
         let sexo = prompt("Digite o sexo: ");
 
-        if(this.verificarLoginExistente(login)){
+        if (this.verificarLoginExistente(login)) {
             console.log("Login já existente, tente outro");
             return;
         }
@@ -130,26 +134,47 @@ class Aplicacao {
         if (this.alunos.length === 0) {
             console.log("Nenhum aluno cadastrado.");
         } else {
+            console.log(`Total de alunos cadastrados: ${this.alunos.length}.`);
+
             this.alunos.forEach(aluno => {
-                console.log(`Nome: ${aluno.nome}, Matrícula: ${aluno.matricula}, Idade: ${aluno.idade}, Sexo: ${aluno.sexo}`);
+                
+                console.log(`Nome: ${aluno.nome}`);
+                console.log(`Login: ${aluno.login}`);
+                console.log(`Idade: ${aluno.idade}`);
+                console.log(`Sexo: ${aluno.sexo}`);
+                console.log(`Média: ${aluno.media}\n`);
             });
+            
         }
     }
 
     buscarAluno() {
-        let nome = prompt("Digite o nome do aluno que deseja buscar: ");
-        for (let aluno of this.alunos) {
-            if (aluno.nome === nome) {
-                console.log(`Matrícula: ${aluno.matricula}`);
-                console.log(`Nome: ${aluno.nome}`);
-                console.log(`Idade: ${aluno.idade}`);
-                console.log(`Sexo: ${aluno.sexo}`);
-                console.log(`Média: ${aluno.media}`);
-                return aluno;
+        let entrada = prompt("Digite o nome ou matricula do aluno que deseja buscar: ");
+        let quantidadeEncontrados = [];
+
+        for (const aluno of this.alunos) {
+            if (aluno.nome === entrada || aluno.matricula === parseInt(entrada)) {
+                quantidadeEncontrados.push(aluno);
+                
             }
         }
-        console.log("Aluno não encontrado");
-        return null;
+
+        if (quantidadeEncontrados.length > 0) {
+            console.log(`Total de alunos encontrados: ${quantidadeEncontrados.length}.`);
+
+            quantidadeEncontrados.forEach(aluno => {
+                console.log(`Nome: ${aluno.nome}`);
+                console.log(`Login: ${aluno.login}`);
+                console.log(`Idade: ${aluno.idade}`);
+                console.log(`Sexo: ${aluno.sexo}`);
+                console.log(`Média: ${aluno.media}\n`);
+            });
+            return;
+        }else{
+            console.log("Aluno não encontrado");
+            return null;
+        }
+        
     }
 
     atualizarAluno(matricula) {
@@ -202,7 +227,7 @@ class Aplicacao {
     // ---- Verificações ----
 
     verificarLoginExistente(login) {
-        if(this.alunos.find(aluno => aluno.login === login)){
+        if (this.alunos.find(aluno => aluno.login === login)) {
             return 1;
         }
         return 0;
@@ -211,7 +236,7 @@ class Aplicacao {
 
     verificarLoginSistema(login, senha) {
         return this.alunos.find(aluno => aluno.login === login && aluno.senha === senha);
-    
+
     }
 
 
@@ -219,8 +244,8 @@ class Aplicacao {
         return this.alunos.find(outroAluno => outroAluno.login === aluno.login && outroAluno.matricula !== aluno.matricula);
     }
 
-    
-      
+
+
     //-------------------------
     //--- Metódos de alteração do aluno ----
 
@@ -238,7 +263,7 @@ class Aplicacao {
         if (!aluno) {
             console.log("Aluno não encontrado.");
             return;
-        }else if(this.verificarLoginDuplicata(aluno)){
+        } else if (this.verificarLoginDuplicata(aluno)) {
             console.log("Login já existente, tente outro");
             return;
         }
