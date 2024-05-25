@@ -34,18 +34,48 @@ class app {
     // Menu
     menu() {
         let op;
+        let opProd;
         console.log("Bem-vindo ao sistema! ");
         do {
 
             console.log(" \n");
             console.log("1. Cadastrar produto");
             console.log("2. Listar produtos");
+            console.log('0. Para sair do sistema.')
 
             op = prompt("Digite sua opção: ");
 
             switch (parseInt(op)) {
                 case 1:
-                    this.adicionarEstoque();
+                    console.log("1. Grão");
+                    console.log("2. Limpeza");
+                    console.log("1. Vestuario");
+                    console.log("0. Para voltar")
+
+                    let prod = prompt("Digite a sua opção: ");
+                    switch (opProd) {
+                        case 1:
+                            //Grão
+
+                            break;
+
+                        case 2:
+                            //Limpeza
+
+                            break;
+
+                        case 3:
+                            //Vestuário
+
+                            break;
+
+                        case 0:
+                            console.log("Voltando");
+                            break;
+
+                        default:
+                            console.log("Opção inválida. Tente novamente.");
+                    }
                     break;
                 case 2:
                     this.listarProdutos();
@@ -107,19 +137,26 @@ class app {
     }
 
     // listar Produtos
-    
-    listarProdutosPorTipo(tipo) {
+
+    /*listarProdutosPorTipo(tipo) {
         console.log(`Lista de Produtos do tipo ${tipo}:`);
         const produtosDoTipo = this.produtos.filter(produto => produto instanceof tipo);
-        
+
         if (produtosDoTipo.length === 0) {
             console.log("Nenhum produto encontrado para este tipo.");
-        } else {
+            return;
+        } else if (tipo === "Grao") {
             produtosDoTipo.forEach(produto => {
                 console.log(`ID: ${produto.id}, Nome: ${produto.nome}, Descrição: ${produto.descricao}, Preço: ${produto.preco}, Quantidade: ${produto.quantidade}`);
             });
+        } else if (tipo === "Limpeza") {
+            produtosDoTipo.forEach(produto => {
+                console.log(`ID: ${produto.id}, Nome: ${produto.nome}, Descrição: ${produto.descricao}, Preço: ${produto.preco}, Quantidade: ${produto.quantidade}`);
+            });
+        } else {
+
         }
-    }
+    }*/
 
 
 
@@ -235,6 +272,19 @@ class Limpeza extends Produto {
 
     }
 
+    exibirProduto() {
+        console.log("Produto de Limpeza:");
+        console.log(`ID: ${this.id}`);
+        console.log(`Nome: ${this.nome}`);
+        console.log(`Descrição: ${this.descricao}`);
+        console.log(`Preço: ${this.preco}`);
+        console.log(`Quantidade: ${this.quantidade}`);
+        console.log(`Tipo: ${this.tipo}`);
+        console.log(`Peso Liquido: ${this.pesoLiquido}`);
+        console.log(`Validade: ${this.validade}`);
+        console.log(`Fragrância: ${this.fragrancia}`);
+    }
+    
     set tipo(tipo) {
         this.#tipo = tipo;
     }
