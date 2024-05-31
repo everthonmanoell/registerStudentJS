@@ -1,12 +1,10 @@
-class app {
+class App {
     #login = '';
     #senha = '';
     produtos = [];
 
     // Executar
     executar() {
-
-
         console.log("Bem vindo ao sistema de gerenciamento de estoque\n");
 
         while (true) {
@@ -14,34 +12,26 @@ class app {
             this.#login = prompt('Digite o login: ');
             this.#senha = prompt('Digite a senha: ');
 
-
-
             if (this.#login === 'adm' && this.#senha === '123') {
-                console.log("Usuário correto! Entrou no sistema!\n");
+                console.log("\nUsuário correto! Entrou no sistema!\n");
                 this.menu();
-
             } else {
-
                 console.log("Usuário ou senha incorretos. Tente novamente!");
-
             }
         }
-
-
-
     }
 
     // Menu
     menu() {
         let op;
         let opProd;
+        let list;
         console.log("Bem-vindo ao sistema! ");
         do {
-
             console.log(" \n");
             console.log("1. Cadastrar produto");
             console.log("2. Listar produtos");
-            console.log('0. Para sair do sistema.')
+            console.log('0. Para sair do sistema.');
 
             op = prompt("Digite sua opção: ");
 
@@ -49,38 +39,50 @@ class app {
                 case 1:
                     console.log("1. Grão");
                     console.log("2. Limpeza");
-                    console.log("1. Vestuario");
-                    console.log("0. Para voltar")
+                    console.log("3. Vestuário");
+                    console.log("0. Para voltar");
 
-                    let prod = prompt("Digite a sua opção: ");
+                    opProd = parseInt(prompt("Digite a sua opção: "));
                     switch (opProd) {
                         case 1:
-                            //Grão
-
+                            this.adicionarGrao();
                             break;
-
                         case 2:
-                            //Limpeza
-
+                            this.adicionarLimpeza();
                             break;
-
                         case 3:
-                            //Vestuário
-
+                            this.adicionarVestuario();
                             break;
-
                         case 0:
                             console.log("Voltando");
                             break;
-
                         default:
                             console.log("Opção inválida. Tente novamente.");
                     }
                     break;
                 case 2:
-                    this.listarProdutos();
+                    console.log("1. Grão");
+                    console.log("2. Limpeza");
+                    console.log("3. Vestuário");
+                    console.log("0. Para voltar");
+                    list = parseInt(prompt("Digite a sua opção: "));
+                    switch (list) {
+                        case 1:
+                            this.listarProdutosPorTipo(Grao);
+                            break;
+                        case 2:
+                            this.listarProdutosPorTipo(Limpeza);
+                            break;
+                        case 3:
+                            this.listarProdutosPorTipo(Vestuario);
+                            break;
+                        case 0:
+                            console.log("Voltando");
+                            break;
+                        default:
+                            console.log("Opção inválida. Tente novamente.");
+                    }
                     break;
-
                 case 0:
                     console.log("Saindo do sistema...");
                     break;
@@ -92,77 +94,62 @@ class app {
 
     // Funções de Produto
 
-    //adicionar Grão
     adicionarGrao() {
-        nome = prompt("Digite o nome do produto de limpeza: ");
-        descricao = prompt("Digite a descricao do grão: ");
-        preco = prompt("Digite o preço do grão: ");
-        quantidade = prompt("Digite a quantidade do grão: ");
-        peso = prompt("Digite o peso do grão: ");
-        marca = prompt("Digite a marca do grão: ");
-        validade = prompt("Digite a validade grão: ");
+        const nome = prompt("Digite o nome do grão: ");
+        const descricao = prompt("Digite a descrição do grão: ");
+        const preco = prompt("Digite o preço do grão: ");
+        const quantidade = prompt("Digite a quantidade do grão: ");
+        const peso = prompt("Digite o peso do grão: ");
+        const marca = prompt("Digite a marca do grão: ");
+        const validade = prompt("Digite a validade do grão: ");
 
         const grao = new Grao(nome, descricao, preco, quantidade, peso, marca, validade);
         this.produtos.push(grao);
     }
 
-    //adicionar Limpeza
     adicionarLimpeza() {
-        nome = prompt("Digite o nome do produto de limpeza: ");
-        descricao = prompt("Digite a descricao do produto de limpeza: ");
-        preco = prompt("Digite o preço do produto de limpeza: ");
-        quantidade = prompt("Digite a quantidade do produto de limpeza: ");
-        tipo = prompt("Digite o tipo do produto de limpeza: ");
-        pesoLiquido = prompt("Digite a pesoLiquido do produto de limpeza: ");
-        validade = prompt("Digite a validade do produto de limpeza: ");
-        fragrancia = prompt("Digite a fragrancia do produto de limpeza: ");
+        const nome = prompt("Digite o nome do produto de limpeza: ");
+        const descricao = prompt("Digite a descrição do produto de limpeza: ");
+        const preco = prompt("Digite o preço do produto de limpeza: ");
+        const quantidade = prompt("Digite a quantidade do produto de limpeza: ");
+        const tipo = prompt("Digite o tipo do produto de limpeza: ");
+        const pesoLiquido = prompt("Digite o peso líquido do produto de limpeza: ");
+        const validade = prompt("Digite a validade do produto de limpeza: ");
+        const fragrancia = prompt("Digite a fragrância do produto de limpeza: ");
 
         const limpeza = new Limpeza(nome, descricao, preco, quantidade, tipo, pesoLiquido, validade, fragrancia);
         this.produtos.push(limpeza);
     }
 
-    //adicionar Limpeza
     adicionarVestuario() {
-        nome = prompt("Digite o nome do vestuario: ");
-        descricao = prompt("Digite a descricao do vestuario: ");
-        preco = prompt("Digite o preço do vestuario: ");
-        quantidade = prompt("Digite a quantidade do vestuario: ");
-        tipo = prompt("Digite o tipo do vestuario: ");
-        pesoLiquido = prompt("Digite a pesoLiquido do vestuario: ");
-        validade = prompt("Digite a validade do vestuario: ");
-        fragrancia = prompt("Digite a fragrancia do vestuario: ");
+        const nome = prompt("Digite o nome do vestuário: ");
+        const descricao = prompt("Digite a descrição do vestuário: ");
+        const preco = prompt("Digite o preço do vestuário: ");
+        const quantidade = prompt("Digite a quantidade do vestuário: ");
+        const marca = prompt("Digite a marca do vestuário: ");
+        const cor = prompt("Digite a cor do vestuário: ");
+        const tamanho = prompt("Digite o tamanho do vestuário: ");
 
         const vestuario = new Vestuario(nome, descricao, preco, quantidade, marca, cor, tamanho);
         this.produtos.push(vestuario);
     }
 
-    // listar Produtos
-
-    /*listarProdutosPorTipo(tipo) {
-        console.log(`Lista de Produtos do tipo ${tipo}:`);
-        const produtosDoTipo = this.produtos.filter(produto => produto instanceof tipo);
-
-        if (produtosDoTipo.length === 0) {
-            console.log("Nenhum produto encontrado para este tipo.");
-            return;
-        } else if (tipo === "Grao") {
-            produtosDoTipo.forEach(produto => {
-                console.log(`ID: ${produto.id}, Nome: ${produto.nome}, Descrição: ${produto.descricao}, Preço: ${produto.preco}, Quantidade: ${produto.quantidade}`);
-            });
-        } else if (tipo === "Limpeza") {
-            produtosDoTipo.forEach(produto => {
-                console.log(`ID: ${produto.id}, Nome: ${produto.nome}, Descrição: ${produto.descricao}, Preço: ${produto.preco}, Quantidade: ${produto.quantidade}`);
-            });
-        } else {
-
+    listarProdutosPorTipo(tipo) {
+        let produtoEncontrado = false;  
+    
+        for (let i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i] instanceof tipo) {
+                this.produtos[i].exibirProduto();
+                produtoEncontrado = true;
+            }
         }
-    }*/
-
-
-
+    
+        if (!produtoEncontrado) {
+            console.log("Nenhum produto cadastrado deste tipo.");
+        }
+    }
+    
 }
-
-
 
 class Produto {
     static #idAtual = 1;
@@ -212,9 +199,9 @@ class Produto {
         return this.#quantidade;
     }
 
-
-
-
+    get id() {
+        return this.#id;
+    }
 }
 
 class Grao extends Produto {
@@ -227,7 +214,18 @@ class Grao extends Produto {
         this.#peso = peso;
         this.#marca = marca;
         this.#validade = validade;
+    }
 
+    exibirProduto() {
+        console.log("Grão:");
+        console.log(`ID: ${this.id}`);
+        console.log(`Nome: ${this.nome}`);
+        console.log(`Descrição: ${this.descricao}`);
+        console.log(`Preço: ${this.preco}`);
+        console.log(`Quantidade: ${this.quantidade}`);
+        console.log(`Peso: ${this.peso}`);
+        console.log(`Marca: ${this.marca}`);
+        console.log(`Validade: ${this.validade}`);
     }
 
     set peso(peso) {
@@ -253,23 +251,20 @@ class Grao extends Produto {
     get validade() {
         return this.#validade;
     }
-
-
-
 }
 
 class Limpeza extends Produto {
     #tipo = '';
     #pesoLiquido = 0;
     #validade = '';
-    #fragrancia;
+    #fragrancia = '';
+
     constructor(nome, descricao, preco, quantidade, tipo, pesoLiquido, validade, fragrancia) {
         super(nome, descricao, preco, quantidade);
         this.#tipo = tipo;
         this.#pesoLiquido = pesoLiquido;
         this.#validade = validade;
         this.#fragrancia = fragrancia;
-
     }
 
     exibirProduto() {
@@ -280,14 +275,15 @@ class Limpeza extends Produto {
         console.log(`Preço: ${this.preco}`);
         console.log(`Quantidade: ${this.quantidade}`);
         console.log(`Tipo: ${this.tipo}`);
-        console.log(`Peso Liquido: ${this.pesoLiquido}`);
+        console.log(`Peso Líquido: ${this.pesoLiquido}`);
         console.log(`Validade: ${this.validade}`);
         console.log(`Fragrância: ${this.fragrancia}`);
     }
-    
+
     set tipo(tipo) {
         this.#tipo = tipo;
     }
+
     get tipo() {
         return this.#tipo;
     }
@@ -295,6 +291,7 @@ class Limpeza extends Produto {
     set pesoLiquido(pesoLiquido) {
         this.#pesoLiquido = pesoLiquido;
     }
+
     get pesoLiquido() {
         return this.#pesoLiquido;
     }
@@ -302,6 +299,7 @@ class Limpeza extends Produto {
     set validade(validade) {
         this.#validade = validade;
     }
+
     get validade() {
         return this.#validade;
     }
@@ -313,10 +311,9 @@ class Limpeza extends Produto {
     get fragrancia() {
         return this.#fragrancia;
     }
-
 }
 
-class Vesturario extends Produto {
+class Vestuario extends Produto {
     #marca = '';
     #cor = '';
     #tamanho = '';
@@ -327,4 +324,43 @@ class Vesturario extends Produto {
         this.#cor = cor;
         this.#tamanho = tamanho;
     }
+
+    exibirProduto() {
+        console.log("Vestuário:");
+        console.log(`ID: ${this.id}`);
+        console.log(`Nome: ${this.nome}`);
+        console.log(`Descrição: ${this.descricao}`);
+        console.log(`Preço: ${this.preco}`);
+        console.log(`Quantidade: ${this.quantidade}`);
+        console.log(`Marca: ${this.marca}`);
+        console.log(`Cor: ${this.cor}`);
+        console.log(`Tamanho: ${this.tamanho}`);
+    }
+
+    set marca(marca) {
+        this.#marca = marca;
+    }
+
+    get marca() {
+        return this.#marca;
+    }
+
+    set cor(cor) {
+        this.#cor = cor;
+    }
+
+    get cor() {
+        return this.#cor;
+    }
+
+    set tamanho(tamanho) {
+        this.#tamanho = tamanho;
+    }
+
+    get tamanho() {
+        return this.#tamanho;
+    }
 }
+
+const app = new App();
+app.executar();
