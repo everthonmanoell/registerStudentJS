@@ -40,6 +40,7 @@ class App {
                     console.log("1. Grão");
                     console.log("2. Limpeza");
                     console.log("3. Vestuário");
+                    console.log("4. Todos os produtos");
                     console.log("0. Para voltar");
 
                     opProd = parseInt(prompt("Digite a sua opção: "));
@@ -52,6 +53,9 @@ class App {
                             break;
                         case 3:
                             this.adicionarVestuario();
+                            break;
+                        case 4:
+                            this.listarProdutosGeral();
                             break;
                         case 0:
                             console.log("Voltando");
@@ -146,6 +150,12 @@ class App {
     
         if (!produtoEncontrado) {
             console.log("Nenhum produto cadastrado deste tipo.");
+        }
+    }
+
+    listarProdutosGeral(){
+        for(let i = 0; i < this.produtos.length; i++){
+            this.produtos[i].exibirProduto();
         }
     }
     
