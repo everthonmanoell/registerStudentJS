@@ -5,7 +5,7 @@ class App {
 
     executar() {
 
-        while(true){
+        while (true) {
             console.log("Bem vindo ao sistema de gerencialmento de paciente\n");
             this.menu();
         }
@@ -13,7 +13,7 @@ class App {
     }
 
     menu() {
-        
+
         console.log("Escolha uma opção valida\n")
         console.log("1. Cadastrar paciente");
         console.log("2. Listar pacientes");
@@ -30,8 +30,8 @@ class App {
                 op2 = parseInt(prompt("Digite sua opção: "));
                 console.log("\n");
 
-                switch(op2){
-                    case 1:                        
+                switch (op2) {
+                    case 1:
                         this.cadastrarPaciente("homem");
                         break;
                     case 2:
@@ -57,7 +57,7 @@ class App {
 
     // Funções //
 
-    cadastrarPaciente(genero){
+    cadastrarPaciente(genero) {
         let nome = prompt("Digite o nome: ").toUpperCase();
         let altura = parseFloat(prompt("Digite a altura: "));
         let peso = parseFloat(prompt("Digite o peso: "));
@@ -65,43 +65,43 @@ class App {
         let tamanhoCabelo = prompt("Digite o tamanho do cabelo: ");
         let corCabelo = prompt("Digite a cor do cabelo: ");
         let tipoCabelo = prompt("Digite o tipo do cabelo: ");
-        
 
-        if(genero.toLowerCase() === 'homem'){
-            
+
+        if (genero.toLowerCase() === 'homem') {
+
             const paciente = new Homem(altura, peso, corOlho, corCabelo, tamanhoCabelo, tipoCabelo, nome);
             this.pacientes.push(paciente);
-        }else{
+        } else {
             const paciente = new Mulher(altura, peso, corOlho, corCabelo, tamanhoCabelo, tipoCabelo, nome);
             this.pacientes.push(paciente);
         }
     }
 
-    listarTodosPaciente(){
-        if(this.pacientes.length === 0){
+    listarTodosPaciente() {
+        if (this.pacientes.length === 0) {
             console.log("Nenhum paciente cadastrado.")
-        }else{
+        } else {
             console.log(`Total de pacientes cadastrados: [ ${this.pacientes.length} ].`);
-           
+
             this.pacientes.forEach(paciente => {
                 console.log("---------------------");
                 console.log(`Nome: ${paciente.nome}`);
                 console.log(`Altura: ${paciente.altura}m`);
                 console.log(`Peso: ${paciente.peso}kg`);
 
-                
+
             })
             console.log("---------------------\n");
         }
     }
 
-    buscarPorNome(){
+    buscarPorNome() {
         let nome = prompt("Digite o nome do paciente que quer buscar: ").toUpperCase();
-        if(this.pacientes.length === 0){
+        if (this.pacientes.length === 0) {
             console.log("Nenhum paciente foi cadastrado.");
-        }else{
-            for (const paciente of this.pacientes){
-                if(nome === paciente.nome){
+        } else {
+            for (const paciente of this.pacientes) {
+                if (nome === paciente.nome) {
                     console.log("------------------------");
                     console.log(`Nome: ${paciente.nome}`);
                     console.log(`Alutra: ${paciente.altura}`);
@@ -114,23 +114,35 @@ class App {
         console.log("Não encontramos o nome do paciente em nossa base de dados ou você digitou errado.");
     }
 
-    /*
-    listarRoupas() {
-        for (let i = 0; i < this.roupas.length; i++) {
-            console.log(this.#roupas[i]);
+    atualizarPaciente(nome) {
+        if (this.pacientes.length === 0) {
+            console.log("Não tem pacientes cadastrados.");
+            return;
         }
+
+        let paciente = this.pacientes.find(paciente => nome === paciente.nome);
+        if (!paciente){
+            console.log("Paciente não encontrado.");
+            return
+        }
+
+        paciente.nome = prompt("Digite o novo nome: ").toUpperCase();
+        paciente.altura = parseFloat(prompt("Digite a sua altura: "));
+        paciente.peso = parseFloat(prompt("Digite o seu peso: "));
+        paciente.corOlho = prompt("Digite a cor do olho: ");
+        paciente.corCabelo = prompt("Digite a cor do cabelo: ");
+        paciente.tipoCabelo = prompt("Digite o tipo do cabelo: ");
+        paciente.tamanhoCabelo = prompt("Digite o tamanho do cabelo: ");
+
+        console.log("\n Dados atualizados com sucesso!");
+
+
+
+
+        
+
     }
 
-    adicionarRoupas() {
-        let tipo = prompt("Digite o tipo da roupa: ");
-        let quantidade = prompt("Digite a quantidade da roupa: ");
-        let cor = prompt("Digite a quantidade da roupa: ");
-
-        const roupa = new Roupa(tipo, quantidade, cor);
-        this.#roupas.push(roupa);
-
-    }*/
-    
 
 }
 
@@ -145,27 +157,27 @@ class Paciente {
         this.#nome = nome;
     }
 
-    get Altura() {
+    get altura() {
         return this.#altura;
     }
 
-    set Altura(altura) {
+    set altura(altura) {
         this.#altura = altura;
     }
 
-    get Peso() {
+    get peso() {
         return this.#peso;
     }
 
-    set Peso(peso) {
+    set peso(peso) {
         this.#peso = peso;
     }
 
-    get Nome() {
+    get nome() {
         return this.#nome;
     }
 
-    set Nome(nome) {
+    set nome(nome) {
         this.#nome = nome;
     }
 
@@ -179,11 +191,11 @@ class Olho {
         this.#cor = cor;
     }
 
-    get Cor() {
+    get corOlho() {
         return this.#cor;
     }
 
-    set Cor(cor) {
+    set corOlho(cor) {
         this.#cor = cor;
     }
 
@@ -200,27 +212,27 @@ class Cabelo {
         this.#tipo = tipo;
     }
 
-    get Cor() {
+    get corCabelo() {
         return this.#cor;
     }
 
-    set Cor(cor) {
+    set corCabelo(cor) {
         this.#cor = cor;
     }
 
-    get Tamanho() {
+    get tamanhoCabelo() {
         return this.#tamanho;
     }
 
-    set Tamanho(tamanho) {
+    set tamanhoCabelo(tamanho) {
         this.#tamanho = tamanho;
     }
 
-    get Tipo() {
+    get tipoCabelo() {
         return this.#tipo;
     }
 
-    set Tipo(tipo) {
+    set tipoCabelo(tipo) {
         this.#tipo = tipo;
     }
 }
@@ -236,11 +248,11 @@ class Roupa {
         this.#cor = cor;
     }
 
-    get Tipo() {
+    get tipo() {
         return this.#tipo;
     }
 
-    set Tipo(tipo) {
+    set tipo(tipo) {
         this.#tipo = tipo;
     }
 
@@ -252,11 +264,11 @@ class Roupa {
         this.#quantidade = quantidade;
     }
 
-    get Cor() {
+    get cor() {
         return this.#cor;
     }
 
-    set Cor(cor) {
+    set cor(cor) {
         this.#cor = cor;
     }
 }
@@ -282,11 +294,11 @@ class Homem extends Paciente {
         this.olho = olho;
     }
 
-    get Cabelo() {
+    get cabelo() {
         return this.cabelo;
     }
 
-    set Cabelo(cabelo) {
+    set cabelo(cabelo) {
         this.cabelo = cabelo;
     }
 
@@ -307,7 +319,7 @@ class Homem extends Paciente {
     }
 
 
-    
+
 
 
 }
@@ -332,15 +344,29 @@ class Mulher extends Paciente {
         this.olho = olho;
     }
 
-    get Cabelo() {
+    get cabelo() {
         return this.cabelo;
     }
 
-    set Cabelo(cabelo) {
+    set cabelo(cabelo) {
         this.cabelo = cabelo;
     }
 
-    
+    listarRoupas() {
+        for (let i = 0; i < this.roupas.length; i++) {
+            console.log(this.#roupas[i]);
+        }
+    }
+
+    adicionarRoupas() {
+        let tipo = prompt("Digite o tipo da roupa: ");
+        let quantidade = prompt("Digite a quantidade da roupa: ");
+        let cor = prompt("Digite a quantidade da roupa: ");
+
+        const roupa = new Roupa(tipo, quantidade, cor);
+        this.#roupas.push(roupa);
+
+    }
 
 
 }
