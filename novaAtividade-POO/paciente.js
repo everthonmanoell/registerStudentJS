@@ -58,7 +58,7 @@ class App {
     // Funções //
 
     cadastrarPaciente(genero){
-        let nome = prompt("Digite o nome: ");
+        let nome = prompt("Digite o nome: ").toUpperCase();
         let altura = parseFloat(prompt("Digite a altura: "));
         let peso = parseFloat(prompt("Digite o peso: "));
         let corOlho = prompt("Digite a cor do olho: ");
@@ -93,6 +93,25 @@ class App {
             })
             console.log("---------------------\n");
         }
+    }
+
+    buscarPorNome(){
+        let nome = prompt("Digite o nome do paciente que quer buscar: ").toUpperCase();
+        if(this.pacientes.length === 0){
+            console.log("Nenhum paciente foi cadastrado.");
+        }else{
+            for (const paciente of this.pacientes){
+                if(nome === paciente.nome){
+                    console.log("------------------------");
+                    console.log(`Nome: ${paciente.nome}`);
+                    console.log(`Alutra: ${paciente.altura}`);
+                    console.log(`Peso: ${paciente.peso}`);
+                }
+            }
+            console.log("------------------------\n");
+            return;
+        }
+        console.log("Não encontramos o nome do paciente em nossa base de dados ou você digitou errado.");
     }
 
     /*
@@ -286,6 +305,9 @@ class Homem extends Paciente {
         this.#roupas.push(roupa);
 
     }
+
+
+    
 
 
 }
