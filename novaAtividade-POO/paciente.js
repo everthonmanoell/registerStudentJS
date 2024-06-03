@@ -16,7 +16,10 @@ class App {
 
         console.log("Escolha uma opção valida\n")
         console.log("1. Cadastrar paciente");
-        console.log("2. Listar pacientes");
+        console.log("2. Listar todos os pacientes");
+        console.log("3. Buscar por nome");
+        console.log("4. Atualizar dados");
+        console.log("5. Excluir paciente");
         console.log("0. Sair do sistema\n");
         let opInical = parseInt(prompt("Digite sua opção: "));
         console.log("\n");
@@ -45,6 +48,15 @@ class App {
                 break;
             case 2:
                 this.listarTodosPaciente();
+                break;
+            case 3:
+                this.buscarPorNome();
+                break;
+            case 4:
+                this.atualizarPaciente();
+                break;
+            case 5:
+                this.excluirPaciente();
                 break;
             case 0:
                 console.log("Saindo do sistema...");
@@ -114,7 +126,8 @@ class App {
         console.log("Não encontramos o nome do paciente em nossa base de dados ou você digitou errado.");
     }
 
-    atualizarPaciente(nome) {
+    atualizarPaciente() {
+        let nome = prompt("Digite o nome do paciente que quer atualizar: ");
         if (this.pacientes.length === 0) {
             console.log("Não tem pacientes cadastrados.");
             return;
@@ -136,10 +149,19 @@ class App {
 
         console.log("\n Dados atualizados com sucesso!");
 
+    }
 
-
-
+    excluirPaciente(){
+        let nome = prompt("Digite o nome do paciente que deseja excluir: ").toUpperCase();
         
+        let index = this.pacientes.findIndex(paciente => paciente.nome === nome);
+        if(index === -1){
+            console.log("Paciente não encontrado.");
+            return;
+        }
+
+        this.pacientes.splice(index, 1);
+        console.log("Paciente removido com sucesso.");
 
     }
 
@@ -370,3 +392,7 @@ class Mulher extends Paciente {
 
 
 }
+
+const app = new App;
+app.executar();
+
