@@ -1,0 +1,11 @@
+1 - Criar Pagina
+2 - Atualizar head
+3 - inserir h1
+4 - inserir paragrafo
+	1 - texto padrão
+    2 - texto em negrito
+    3 - texto em italico
+    4 - link
+5 - inserir imagem
+6 - inserir lista
+7 - gerar script da pagina
